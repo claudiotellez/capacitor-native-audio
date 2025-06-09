@@ -30,7 +30,7 @@ public class AudioPlayerService extends MediaSessionService {
                     .setUsage(C.USAGE_MEDIA)
                     .setContentType(C.AUDIO_CONTENT_TYPE_SPEECH)
                     .build(),
-                true
+                false
             )
             .setWakeMode(C.WAKE_MODE_NETWORK)
             .build();
