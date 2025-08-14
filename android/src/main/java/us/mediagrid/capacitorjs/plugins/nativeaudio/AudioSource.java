@@ -70,14 +70,20 @@ public class AudioSource extends Binder {
     }
 
     public void setPlayerAttributes() {
+        // Modified: Use USAGE_ASSISTANCE_SONIFICATION instead of USAGE_MEDIA for non-notification audio
+        // and set handleAudioFocus to false to avoid interrupting other audio
         player.setAudioAttributes(
             new AudioAttributes.Builder()
-                .setUsage(C.USAGE_MEDIA)
+                .setUsage(
+                    useForNotification 
+                        ? C.USAGE_MEDIA  // Keep media usage for notification audio
+                        : C.USAGE_ASSISTANCE_SONIFICATION  // Use sonification for non-notification audio
+                )
                 .setContentType(
-                    useForNotification ? C.AUDIO_CONTENT_TYPE_SPEECH : C.AUDIO_CONTENT_TYPE_MUSIC
+                    useForNotification ? C.AUDIO_CONTENT_TYPE_SPEECH : C.AUDIO_CONTENT_TYPE_SONIFICATION
                 )
                 .build(),
-            useForNotification
+            false  // Modified: Set handleAudioFocus to false for non-notification audio
         );
 
         player.setMediaItem(buildMediaItem());

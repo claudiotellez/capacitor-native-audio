@@ -27,8 +27,8 @@ public class AudioPlayerService extends MediaSessionService {
         ExoPlayer player = new ExoPlayer.Builder(this)
             .setAudioAttributes(
                 new AudioAttributes.Builder()
-                    .setUsage(C.USAGE_ASSISTANCE_SONIFICATION) // Changed from C.USAGE_MEDIA to allow concurrent background playback
-                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC) // Changed from C.AUDIO_CONTENT_TYPE_SPEECH for general background audio
+                    .setUsage(C.USAGE_MEDIA)
+                    .setContentType(C.AUDIO_CONTENT_TYPE_SPEECH)
                     .build(),
                 false
             )
